@@ -6,6 +6,18 @@ namespace Capstone
 {
     public class VendingMachine
     {
+<<<<<<< HEAD
+=======
+        public void PrintMenu()
+        {
+            Console.WriteLine("*******************************");
+            Console.WriteLine("(1) Display Vending Machine Items");
+            Console.WriteLine("(2) Purchase");
+            Console.WriteLine("(3) Exit");
+            Console.WriteLine("Select 1, 2 or 3");
+            string mainMenuChoice = Console.ReadLine();
+        }
+>>>>>>> 8a3c44b6f969b981be7b5cb7a857ee22a16c6b2d
 
 
         public decimal Balance { get; private set; } = 0;

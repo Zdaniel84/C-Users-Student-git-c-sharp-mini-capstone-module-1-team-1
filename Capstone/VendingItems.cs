@@ -14,7 +14,7 @@ namespace Capstone
         public string Type { get; set; }
 
         public int Stock { get; set; }
-        public List<VendingItems> sampleList { get; set; } = new List<VendingItems>();
+        //public List<VendingItems> sampleList { get; set; } = new List<VendingItems>();
        
         public VendingItems(string slot, string item, decimal price, string type, int stock)
         {
@@ -31,7 +31,7 @@ namespace Capstone
         }
 
 
-        //public List<VendingItems> sampleList = new List<VendingItems>();
+        public List<string> sampleList = new List<string>();
 
 
         //public Dictionary<string, VendingItems> vendingItems = new Dictionary<string, VendingItems>();
@@ -47,10 +47,16 @@ namespace Capstone
 
                     while (!stream.EndOfStream)
                     {
+
                         string line = stream.ReadLine();
-                        string[] items = line.Split("|");//will split file into 4 pieces that need separated into slot, item, price, type.
-                        
-                        Console.WriteLine(line);
+                        string[] items = line.Split("|");
+                        sampleList.AddRange(items);
+
+                        int stock = 5;
+
+                        Console.WriteLine(string.Join(", ", items) + ", " + stock);
+
+
                     }
                 }
             }
@@ -59,7 +65,7 @@ namespace Capstone
             {
                 Console.WriteLine("Error reading file.");
             }
-           
+
         }
 
         public virtual void GetSound(string sound)
