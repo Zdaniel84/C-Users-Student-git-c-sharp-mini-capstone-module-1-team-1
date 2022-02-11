@@ -6,8 +6,38 @@ namespace Capstone
 {
     public class VendingMachine
     {
-        
 
+
+        public decimal Balance { get; private set; } = 0;
+
+        public VendingMachine()
+        {
+           
+        }
+
+
+        public virtual void DepositMoney() 
+        {
+            switch (Balance)
+            {
+                case (1):
+                    this.Balance += 1;
+                    break;
+                case (5):
+                    this.Balance += 5;
+                    break;
+                case (10):
+                    this.Balance += 10;
+                    break;
+                case (20):
+                    this.Balance += 20;
+                    break;
+                default:
+                    Console.WriteLine("Cannot accept value, please enter $1, $5, $10, or $20");
+                    break;
+            }
+
+        }
 
 
 
