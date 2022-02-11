@@ -1,10 +1,11 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.IO;
 using System.Collections.Generic;
 
 namespace Capstone
 {
-    public class Program
+    public class Program 
     {
         public static void Main(string[] args)
         {
@@ -69,6 +70,7 @@ namespace Capstone
                     decimal balance = 0M;
                     decimal.TryParse(amountEntered, out balance);
 
+                        sample.AddRange(items);
 
                     balance += numericalAmountEntered;
                     Console.WriteLine("Balance: " + balance);
@@ -138,11 +140,13 @@ namespace Capstone
         }
 
 
+            }
+
+
+        }
+
     }
-
-
 }
-
 
 
 
