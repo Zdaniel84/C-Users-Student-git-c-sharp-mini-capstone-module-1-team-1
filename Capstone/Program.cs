@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.IO;
-using System.Collections.Generic;
 
 namespace Capstone
 {
@@ -69,8 +68,8 @@ namespace Capstone
                     decimal numericalAmountEntered = new decimal();
                     decimal balance = 0M;
                     decimal.TryParse(amountEntered, out balance);
-
-                        sample.AddRange(items);
+                    
+                    //sampleList.AddRange(items);
 
                     balance += numericalAmountEntered;
                     Console.WriteLine("Balance: " + balance);
@@ -140,10 +139,10 @@ namespace Capstone
         }
 
 
-            }
+            
 
 
-        }
+        
 
     }
 }
