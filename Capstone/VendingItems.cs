@@ -15,7 +15,7 @@ namespace Capstone
 
         public int Stock { get; set; }
         //public List<VendingItems> sampleList { get; set; } = new List<VendingItems>();
-       
+
         public VendingItems(string slot, string item, decimal price, string type, int stock)
         {
             this.Slot = slot;
@@ -23,7 +23,7 @@ namespace Capstone
             this.Price = price;
             this.Type = type;
             this.Stock = stock;
-            
+
         }
         public VendingItems()
         {
@@ -72,10 +72,10 @@ namespace Capstone
         {
             Console.WriteLine("");
         }
-        
-        
 
-        
+
+
+
 
 
 
