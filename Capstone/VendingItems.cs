@@ -4,32 +4,26 @@ using System.Text;
 using System.IO;
 namespace Capstone
 {
-    public class VendingItems : IVendable
+    public class VendingItems
     {
         //might have to move dictionary at some point
 
-        public string Slot { get; set; }
-        public string Item { get; set; }
-        public decimal Price { get; set; }
-        public string Type { get; set; }
 
-        public int Stock { get; set; }
-        //public List<VendingItems> itemList { get; set; } = new List<VendingItems>();
+        //public decimal Balance { get; }
 
-        public VendingItems(string slot, string item, decimal price, string type, int stock)
-        {
-            this.Slot = slot;
-            this.Item = item;
-            this.Price = price;
-            this.Type = type;
-            this.Stock = stock;
 
-        }
+        //public VendingItems(decimal balance, decimal currentMoney)
+        //{
+        //    this.Balance = balance;
+        //    this.CurrentMoney = currentMoney;
+        //}
+
         public VendingItems()
         {
 
         }
 
+        VendingMachine vendingMachine = new VendingMachine();
 
         public List<string> sampleList = new List<string>();
 
@@ -76,15 +70,15 @@ namespace Capstone
         public void ProductSelection()
         {
             //List<string> sampleList = new List<string>();
-            
+
             try
             {
                 using (StreamReader stream = new StreamReader(path))
-                    // we are using stream reader to read the text file DV
+                // we are using stream reader to read the text file DV
                 {
 
                     while (!stream.EndOfStream)
-                        // while the stream of data hasnt finished DV
+                    // while the stream of data hasnt finished DV
                     {
 
                         string line = stream.ReadLine();
@@ -94,7 +88,10 @@ namespace Capstone
                         sampleList.AddRange(items);
                         // adds all of the items in the text file DV
 
+
                         int stock = 5;
+
+                        //Dictionary<sampleList, int> itemDictionary = new Dictionary<sampleList, int>();
                         // stock of each item is 5 DV
 
                         Console.WriteLine(string.Join(", ", items) + ", " + stock);
@@ -115,17 +112,40 @@ namespace Capstone
             string userInput = Console.ReadLine();
             // here we will key in the product code DV
             for (int i = 0; i < sampleList.Count; i++)
-                // will go through ALL of our options of product codes DV
+            // will go through ALL of our options of product codes DV
             {
                 if (sampleList[i].Equals(userInput))
-                    //the product code == to what we inputted will:
+                //the product code == to what we inputted will:
                 {
+                    //if ()
                     Console.WriteLine("your choice is " + sampleList[i + 1]);
                     // show the name of the snack DV
                     Console.WriteLine("price: " + sampleList[i + 2]);
                     // and the price of the snack DV
-                    Console.ReadLine();
+                    Console.WriteLine("Your remaining balance is: " + vendingMachine.Balance);
+
                     // for the next step DV
+                    if (sampleList[i + 3].Equals("Chip"))
+                    {
+                        Chips chips = new Chips();
+                        Console.WriteLine(chips.Sound);
+                    }
+                    if (sampleList[i + 3].Equals("Candy"))
+                    {
+                        Candy candy = new Candy();
+                        Console.WriteLine(candy.Sound);
+                    }
+                    if (sampleList[i + 3].Equals("Drink"))
+                    {
+                        Beverage beverage = new Beverage();
+                        Console.WriteLine(beverage.Sound);
+                    }
+                    if (sampleList[i + 3].Equals("Gum"))
+                    {
+                        Gum gum = new Gum();
+                        Console.WriteLine(gum.Sound);
+                    }
+                    Console.ReadLine();
                 }
             }
         }

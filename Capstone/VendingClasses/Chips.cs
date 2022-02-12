@@ -8,13 +8,7 @@ namespace Capstone
     {
         public string Sound { get; set; } = "Crunch Crunch, Yum!";
 
-        public Chips(string slot, string item, decimal price, string type, string sound, int stock) : base(slot, item, price, type, stock)
-        {
-
-            this.Sound = sound;
-
-
-        }
+ 
         public Chips()
         {
 

@@ -7,8 +7,8 @@ namespace Capstone
     public interface IVendable
     {
 
-
-
+        //public decimal Balance { get; }
+       
 
     }
 }

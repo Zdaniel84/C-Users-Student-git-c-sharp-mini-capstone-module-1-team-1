@@ -2,20 +2,21 @@
 using System.Collections.Generic;
 using System.IO;
 
+
 namespace Capstone
 {
     public class Program
     {
         public static void Main(string[] args)
         {
-            VendingItems itemList = new VendingItems();
+            VendingItems vendingItems = new VendingItems();
             //creates item list (however is this necisary?) I cant spell ;~; DV ***
                 // This and menuReturn below are declaring a variable and initializing it to be able to use the method in VendingItems class MR
-            decimal currentMoney = 0;
+            //decimal currentMoney = 0;
             //sets the amount that you have avaliable to 0.00 DV
-            VendingMachine menuReturn = new VendingMachine();
+            VendingMachine vendingMachine = new VendingMachine();
             //another menu list? ( If someone could explain ) DV ***
-            menuReturn.PrintMenu();
+            vendingMachine.PrintMenu();
             //this will print the menu from the VendingMachine class. It has a group of CW to print to your console asking if you would like to view the products, purchase or exit DV
             string mainMenuChoice = Console.ReadLine();
             // Choose to 1. View the items 2. Purchase an item 3. Exit the program DV
@@ -45,7 +46,7 @@ namespace Capstone
 
                     Console.Clear();
                     // "Clears the console buffer and corresponding console window of display information" it will clear our previous menu and ensure this menu will be at the top of our console DV 
-                    itemList.ShowItems();
+                    vendingItems.ShowItems();
                     //this is necisary! it holds all of the info from our .csv (an assupmtion, plz correct if wrong) DV
                     Console.WriteLine("Enter 'm' to return to main menu");
                     // at the end of our list it will ask if we want to return to the main menu, which is in the class VendingMachine. DV
@@ -56,7 +57,7 @@ namespace Capstone
                     if (backToMainMenu == "m")
                         // IF "m" is pressed ... DV
                     {
-                        menuReturn.PrintMenu();
+                        vendingMachine.PrintMenu();
                         // return to main menu DV
                         mainMenuChoice = Console.ReadLine();
                         //ask for another input (1, 2, 3) DV
@@ -79,7 +80,9 @@ namespace Capstone
                     // there are three options to leave this page DV
 
                     Console.WriteLine("");
-                    Console.WriteLine($"Current money provided: {currentMoney.ToString("C")}");
+                    
+                    
+                    Console.WriteLine($"Current money provided: {vendingMachine.Balance}");
                     Console.WriteLine("");
                     // we will get an updated count of money we have provided. This method is in the program.cs below DV
                     Console.WriteLine("Select 1, 2, or 3");
@@ -89,25 +92,30 @@ namespace Capstone
                     if (subMenuChoice == "1")
                         //we have chosen "1" in the sub menu 
                     {
-                        Console.WriteLine("Enter whole dollar amount: "); //Fix to follow readme 
-                        // prompts us to enter a dollar amount ex: 1, 2, 4, 10, 20 DV
-                        string amountEntered = Console.ReadLine();
-                        // our response DV
-                        Console.Clear();
-                        decimal balance = new decimal();
-                        // I would love to get a better explaination of why we need this, because i am unsure :( DV ***
-                            // This is to declare the variable balance to be used below MR
+                        
+                        vendingMachine.GetBalance();
+                        //VendingMachine balanceNew = new VendingMachine();
+                        //balanceNew.GetBalance();
+                        //Console.WriteLine("Enter whole dollar amount: "); //Fix to follow readme 
+                        //// prompts us to enter a dollar amount ex: 1, 2, 4, 10, 20 DV
+                        //string amountEntered = Console.ReadLine();
+                        //// our response DV
+                        //Console.Clear();
+                        //decimal balance = new decimal();
+                        //// I would love to get a better explaination of why we need this, because i am unsure :( DV ***
+                        //// This is to declare the variable balance to be used below MR
 
-                        decimal.TryParse(amountEntered, out balance); 
-                        // what we have added has been inputted as a string. a tryparse will turn this into a decimal. I feel like it has something to to with the line above DV
+                        //decimal.TryParse(amountEntered, out balance);
+                        //// what we have added has been inputted as a string. a tryparse will turn this into a decimal. I feel like it has something to to with the line above DV
 
 
-                        //sampleList.AddRange(items);
+                        ////sampleList.AddRange(items);
 
-                        currentMoney += balance;
-                        //we are adding the currentMoney of accumulated money to the balance of money we have inputted DV
-                        Console.WriteLine("Balance: " + currentMoney);
-                        //this will display what we have accumulated DV
+                        //currentMoney += balance;
+                        ////we are adding the currentMoney of accumulated money to the balance of money we have inputted DV
+                        //Console.WriteLine("Balance: " + currentMoney);
+                        ////this will display what we have accumulated DV
+
                     }
 
 
@@ -116,17 +124,13 @@ namespace Capstone
                     {
 
 
-                        VendingItems choice = new VendingItems();
+                        
                         // again would love some further explaination. Tried debugging and dont really understand im sorry DV ***
 
-                        choice.ProductSelection();
+                        vendingItems.ProductSelection();
                         // this is a method found in the class VendingItems this will show you the choices once again DV
 
-                        //if (userSelection == "A1" || userSelection == "A2" || userSelection == "A3" || userSelection == "A4")
-                        //{
-                        //    Chips chips = new Chips();
-                        //    Console.WriteLine(chips.Sound);
-                        //}
+                       
                     }
                     if (subMenuChoice == "3")
                         // we have chosen "3" in the subMenu DV
@@ -230,6 +234,8 @@ namespace Capstone
 
 
         }
+
+      
     }
 } //I had a build error and it said that i needed } brackets at the end here. Added these and will run tests now. DV
 
