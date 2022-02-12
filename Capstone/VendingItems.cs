@@ -121,8 +121,10 @@ namespace Capstone
                     Console.WriteLine("your choice is " + sampleList[i + 1]);
                     // show the name of the snack DV
                     Console.WriteLine("price: " + sampleList[i + 2]);
+                    decimal priceOf = decimal.Parse(sampleList[i + 2]);
+
                     // and the price of the snack DV
-                    Console.WriteLine("Your remaining balance is: " + vendingMachine.Balance);
+                    Console.WriteLine("Your remaining balance is: " + vendingMachine.subtractFromBalance(priceOf));
 
                     // for the next step DV
                     if (sampleList[i + 3].Equals("Chip"))
@@ -149,6 +151,7 @@ namespace Capstone
                 }
             }
         }
+        
 
 
 
