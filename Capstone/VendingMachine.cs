@@ -14,6 +14,7 @@ namespace Capstone
             Console.WriteLine("(3) Exit");
             Console.WriteLine("Select 1, 2 or 3");
             //string mainMenuChoice = Console.ReadLine();
+            // method to display the main menu on our console DV
         }
 
 

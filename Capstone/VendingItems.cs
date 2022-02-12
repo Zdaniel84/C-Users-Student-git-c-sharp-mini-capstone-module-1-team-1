@@ -38,7 +38,7 @@ namespace Capstone
 
         public string path = @"C:\Users\Student\git\c-sharp-mini-capstone-module-1-team-1\vendingmachine.csv";
 
-        public void GetItems()
+        public void ShowItems()
         {
             try
             {
@@ -80,18 +80,25 @@ namespace Capstone
             try
             {
                 using (StreamReader stream = new StreamReader(path))
+                    // we are using stream reader to read the text file DV
                 {
 
                     while (!stream.EndOfStream)
+                        // while the stream of data hasnt finished DV
                     {
 
                         string line = stream.ReadLine();
+                        // read each line DV
                         string[] items = line.Split("|");
+                        // remove each | or delimiter i think, itll seperate everything DV
                         sampleList.AddRange(items);
+                        // adds all of the items in the text file DV
 
                         int stock = 5;
+                        // stock of each item is 5 DV
 
                         Console.WriteLine(string.Join(", ", items) + ", " + stock);
+                        // seperate each item in the text file with commas , add the stock (5 to begin with) we will need to implement a method that takes it away with each purchase DV
 
 
                     }
@@ -101,16 +108,24 @@ namespace Capstone
             catch (Exception)
             {
                 Console.WriteLine("Error reading file.");
+                //any exceptions will cause an error message DV
             }
             Console.WriteLine("Enter Product code:");
+            //enter the product code (ex A1 B3 C2 D4) to retrieve item in that slot DV
             string userInput = Console.ReadLine();
+            // here we will key in the product code DV
             for (int i = 0; i < sampleList.Count; i++)
+                // will go through ALL of our options of product codes DV
             {
                 if (sampleList[i].Equals(userInput))
+                    //the product code == to what we inputted will:
                 {
                     Console.WriteLine("your choice is " + sampleList[i + 1]);
+                    // show the name of the snack DV
                     Console.WriteLine("price: " + sampleList[i + 2]);
+                    // and the price of the snack DV
                     Console.ReadLine();
+                    // for the next step DV
                 }
             }
         }
