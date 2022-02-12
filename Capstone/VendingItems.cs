@@ -14,7 +14,7 @@ namespace Capstone
         public string Type { get; set; }
 
         public int Stock { get; set; }
-        //public List<VendingItems> sampleList { get; set; } = new List<VendingItems>();
+        //public List<VendingItems> itemList { get; set; } = new List<VendingItems>();
 
         public VendingItems(string slot, string item, decimal price, string type, int stock)
         {
@@ -73,7 +73,47 @@ namespace Capstone
             Console.WriteLine("");
         }
 
+        public void ProductSelection()
+        {
+            //List<string> sampleList = new List<string>();
+            
+            try
+            {
+                using (StreamReader stream = new StreamReader(path))
+                {
 
+                    while (!stream.EndOfStream)
+                    {
+
+                        string line = stream.ReadLine();
+                        string[] items = line.Split("|");
+                        sampleList.AddRange(items);
+
+                        int stock = 5;
+
+                        Console.WriteLine(string.Join(", ", items) + ", " + stock);
+
+
+                    }
+                }
+            }
+
+            catch (Exception)
+            {
+                Console.WriteLine("Error reading file.");
+            }
+            Console.WriteLine("Enter Product code:");
+            string userInput = Console.ReadLine();
+            for (int i = 0; i < sampleList.Count; i++)
+            {
+                if (sampleList[i].Equals(userInput))
+                {
+                    Console.WriteLine("your choice is " + sampleList[i + 1]);
+                    Console.WriteLine("price: " + sampleList[i + 2]);
+                    Console.ReadLine();
+                }
+            }
+        }
 
 
 
