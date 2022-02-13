@@ -9,25 +9,39 @@ namespace Capstone
         public List<string> listOfProducts = new List<string>();
 
         Customization easterEgg = new Customization();
-        public decimal Balance { get; private set; }
-
-        public decimal PriceOfItem { get; private set; }
+        public decimal Balance { get;  set; }
+        public decimal NewBalance { get; set; }
+        public decimal PriceOfItem { get; set; }
 
         public int Stock { get; set; } = 5;
 
         public int AmtPurchased { get; set; }
 
 
+
         public string path = @"C:\Users\Student\git\c-sharp-mini-capstone-module-1-team-1\vendingmachine.csv";
         public void GetBalance()
         {
 
-            Console.WriteLine("Enter dollar amount: ");
-            string amountEntered = Console.ReadLine();
+            Console.WriteLine("Enter dollar amount (1, 2, 5, or 10): ");
             
+            string amountEntered = Console.ReadLine();
+           
             decimal.TryParse(amountEntered, out decimal balance);
-          
-            this.Balance += balance;
+           if(balance == 1 || balance == 2 || balance == 5 || balance == 10)
+            {
+                this.Balance += balance;
+            }
+           else
+            {                
+                Console.WriteLine("Please enter a valid amount");
+                Console.ReadLine();
+            }
+            
+
+
+
+            
         }
 
         public decimal subtractFromBalance(decimal price)
@@ -79,46 +93,92 @@ namespace Capstone
                 Console.WriteLine("How did THAT get in there?!");
                 IPausable.LongPause();
             }
-            for (int i = 0; i < listOfProducts.Count; i++)
-
+            bool loopBreak = true;
+            
+            while (loopBreak)
             {
-                if (listOfProducts[i].Equals(userInput))
+
+
+
+                for (int i = 0; i < listOfProducts.Count; i++)
 
                 {
+                    if (listOfProducts[i].Equals(userInput))
 
-                    Console.WriteLine("your choice is " + listOfProducts[i + 1]);
-
-                    Console.WriteLine("price: " + listOfProducts[i + 2]);
-                    this.PriceOfItem = decimal.Parse(listOfProducts[i + 2]);
-
-
-                    Console.WriteLine("Your remaining balance is:" + subtractFromBalance(this.PriceOfItem));
-
-                   
-                    if (listOfProducts[i + 3].Equals("Chip"))
                     {
-                        Chips chips = new Chips();
-                        Console.WriteLine(chips.Sound);
+
+                        Console.WriteLine("your choice is " + listOfProducts[i + 1]);
+
+                        Console.WriteLine("price: " + listOfProducts[i + 2]);
+                        
+
+                        decimal.TryParse(listOfProducts[i + 2], out decimal productPrice);
+                        if(Balance < productPrice)
+                        {
+                            Console.Clear();
+                            Console.WriteLine("Not enough for selected item");
+                            Console.Read();
+                        }                        
+                        else
+                        {
+                            
+                            NewBalance = productPrice;
+                            Console.WriteLine("Your remaining balance is:" + (Balance - NewBalance));
+                            if (listOfProducts[i + 3].Equals("Chip"))
+                            {
+                                Chips chips = new Chips();
+                                Console.WriteLine(chips.Sound);
+                            }
+                            if (listOfProducts[i + 3].Equals("Candy"))
+                            {
+                                Candy candy = new Candy();
+                                Console.WriteLine(candy.Sound);
+                            }
+                            if (listOfProducts[i + 3].Equals("Drink"))
+                            {
+                                Beverage beverage = new Beverage();
+                                Console.WriteLine(beverage.Sound);
+                            }
+                            if (listOfProducts[i + 3].Equals("Gum"))
+                            {
+                                Gum gum = new Gum();
+                                Console.WriteLine(gum.Sound);
+                            }
+                            
+                            Console.ReadLine();
+                            break;
+                        }
+                        
+                        
+                        
+                        
+
+                        //if (listOfProducts[i + 3].Equals("Chip"))
+                        //{
+                        //    Chips chips = new Chips();
+                        //    Console.WriteLine(chips.Sound);
+                        //}
+                        //if (listOfProducts[i + 3].Equals("Candy"))
+                        //{
+                        //    Candy candy = new Candy();
+                        //    Console.WriteLine(candy.Sound);
+                        //}
+                        //if (listOfProducts[i + 3].Equals("Drink"))
+                        //{
+                        //    Beverage beverage = new Beverage();
+                        //    Console.WriteLine(beverage.Sound);
+                        //}
+                        //if (listOfProducts[i + 3].Equals("Gum"))
+                        //{
+                        //    Gum gum = new Gum();
+                        //    Console.WriteLine(gum.Sound);
+                        //}
+
+                        //Console.ReadLine();
+                        //break;
                     }
-                    if (listOfProducts[i + 3].Equals("Candy"))
-                    {
-                        Candy candy = new Candy();
-                        Console.WriteLine(candy.Sound);
-                    }
-                    if (listOfProducts[i + 3].Equals("Drink"))
-                    {
-                        Beverage beverage = new Beverage();
-                        Console.WriteLine(beverage.Sound);
-                    }
-                    if (listOfProducts[i + 3].Equals("Gum"))
-                    {
-                        Gum gum = new Gum();
-                        Console.WriteLine(gum.Sound);
-                    }
-                  
-                    Console.ReadLine();
-                    //Console.Clear();
                 }
+                break;
             }
         }
 
