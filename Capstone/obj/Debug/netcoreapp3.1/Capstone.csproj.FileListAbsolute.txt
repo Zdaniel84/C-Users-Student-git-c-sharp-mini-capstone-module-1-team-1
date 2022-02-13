@@ -12,3 +12,5 @@ C:\Users\Student\git\c-sharp-mini-capstone-module-1-team-1\Capstone\bin\Debug\ne
 C:\Users\Student\git\c-sharp-mini-capstone-module-1-team-1\Capstone\obj\Debug\netcoreapp3.1\Capstone.dll
 C:\Users\Student\git\c-sharp-mini-capstone-module-1-team-1\Capstone\obj\Debug\netcoreapp3.1\Capstone.pdb
 C:\Users\Student\git\c-sharp-mini-capstone-module-1-team-1\Capstone\obj\Debug\netcoreapp3.1\Capstone.genruntimeconfig.cache
+C:\Users\Student\git\c-sharp-mini-capstone-module-1-team-1\Capstone\bin\Debug\netcoreapp3.1\Welcone.txt
+C:\Users\Student\git\c-sharp-mini-capstone-module-1-team-1\Capstone\bin\Debug\netcoreapp3.1\magichorse.txt

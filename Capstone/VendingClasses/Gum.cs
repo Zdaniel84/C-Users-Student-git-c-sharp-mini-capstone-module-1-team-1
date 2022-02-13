@@ -4,7 +4,7 @@ using System.Text;
 
 namespace Capstone
 {
-    public class Gum : VendingItems
+    public class Gum : MoneyRelated
     {
 
 
@@ -16,10 +16,7 @@ namespace Capstone
         {
 
         }
-        public override void GetSound(string sound)
-        {
-            Console.WriteLine("Chew Chew, Yum!");
-        }
+
 
     }
 }
