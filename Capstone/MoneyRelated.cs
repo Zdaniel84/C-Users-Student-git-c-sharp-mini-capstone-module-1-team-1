@@ -9,8 +9,8 @@ namespace Capstone
         public List<string> listOfProducts = new List<string>();
 
         Customization easterEgg = new Customization();
-        public decimal Balance { get;  set; }
-        public decimal NewBalance { get; set; }
+        public decimal Balance { get; set; }
+        public decimal ProductPrice { get; set; }
         public decimal PriceOfItem { get; set; }
 
         public int Stock { get; set; } = 5;
@@ -24,24 +24,24 @@ namespace Capstone
         {
 
             Console.WriteLine("Enter dollar amount (1, 2, 5, or 10): ");
-            
+
             string amountEntered = Console.ReadLine();
-           
+
             decimal.TryParse(amountEntered, out decimal balance);
-           if(balance == 1 || balance == 2 || balance == 5 || balance == 10)
+            if (balance == 1 || balance == 2 || balance == 5 || balance == 10)
             {
                 this.Balance += balance;
             }
-           else
-            {                
+            else
+            {
                 Console.WriteLine("Please enter a valid amount");
                 Console.ReadLine();
             }
-            
 
 
 
-            
+
+
         }
 
         public decimal subtractFromBalance(decimal price)
@@ -51,7 +51,7 @@ namespace Capstone
 
         public void ProductSelection()
         {
-           try
+            try
             {
                 using (StreamReader stream = new StreamReader(path))
 
@@ -66,11 +66,12 @@ namespace Capstone
 
                         listOfProducts.AddRange(items);
 
+
+                        listOfProducts.Add("5");
+
                         int stockAvaliabe = this.Stock - this.AmtPurchased;
 
-                        Console.WriteLine(string.Join(", ", items) + ", " + stockAvaliabe);
-
-
+                        
 
 
                     }
@@ -82,9 +83,17 @@ namespace Capstone
                 Console.WriteLine("Error reading file.");
 
             }
+            
+            for (int i = 4; i < listOfProducts.Count; i = i + 5)
+            {
+                Console.WriteLine($"{listOfProducts[i - 4]}, {listOfProducts[i - 3]}, {listOfProducts[i - 2]}, {listOfProducts[i - 1]}, {listOfProducts[i]}");
+            }
+
             Console.WriteLine();
             Console.WriteLine();
             Console.WriteLine("Enter Product code:");
+
+            
 
             string userInput = Console.ReadLine();
             if (userInput == "12")
@@ -94,7 +103,7 @@ namespace Capstone
                 IPausable.LongPause();
             }
             bool loopBreak = true;
-            
+
             while (loopBreak)
             {
 
@@ -103,6 +112,8 @@ namespace Capstone
                 for (int i = 0; i < listOfProducts.Count; i++)
 
                 {
+
+
                     if (listOfProducts[i].Equals(userInput))
 
                     {
@@ -110,73 +121,57 @@ namespace Capstone
                         Console.WriteLine("your choice is " + listOfProducts[i + 1]);
 
                         Console.WriteLine("price: " + listOfProducts[i + 2]);
+
                         
 
-                        decimal.TryParse(listOfProducts[i + 2], out decimal productPrice);
-                        if(Balance < productPrice)
+                        while (loopBreak)
                         {
-                            Console.Clear();
-                            Console.WriteLine("Not enough for selected item");
-                            Console.Read();
-                        }                        
-                        else
-                        {
-                            
-                            NewBalance = productPrice;
-                            Console.WriteLine("Your remaining balance is:" + (Balance - NewBalance));
-                            if (listOfProducts[i + 3].Equals("Chip"))
+                            decimal.TryParse(listOfProducts[i + 2], out decimal productPrice);
+
+                            if (Balance < productPrice)
                             {
-                                Chips chips = new Chips();
-                                Console.WriteLine(chips.Sound);
+                                Console.Clear();
+                                Console.WriteLine("Not enough for selected item");
+                                Console.Read();
+                                ProductPrice = 0;
                             }
-                            if (listOfProducts[i + 3].Equals("Candy"))
+
+                            else
                             {
-                                Candy candy = new Candy();
-                                Console.WriteLine(candy.Sound);
+
+                                ProductPrice = productPrice;
+
+                                Console.WriteLine("Your remaining balance is:" + (Balance - ProductPrice));
+
+                                if (listOfProducts[i + 3].Equals("Chip"))
+                                {
+                                    Chips chips = new Chips();
+                                    Console.WriteLine(chips.Sound);
+                                }
+                                if (listOfProducts[i + 3].Equals("Candy"))
+                                {
+                                    Candy candy = new Candy();
+                                    Console.WriteLine(candy.Sound);
+                                }
+                                if (listOfProducts[i + 3].Equals("Drink"))
+                                {
+                                    Beverage beverage = new Beverage();
+                                    Console.WriteLine(beverage.Sound);
+                                }
+                                if (listOfProducts[i + 3].Equals("Gum"))
+                                {
+                                    Gum gum = new Gum();
+                                    Console.WriteLine(gum.Sound);
+                                }
+
+                                Console.ReadLine();
+                                break;
                             }
-                            if (listOfProducts[i + 3].Equals("Drink"))
-                            {
-                                Beverage beverage = new Beverage();
-                                Console.WriteLine(beverage.Sound);
-                            }
-                            if (listOfProducts[i + 3].Equals("Gum"))
-                            {
-                                Gum gum = new Gum();
-                                Console.WriteLine(gum.Sound);
-                            }
-                            
-                            Console.ReadLine();
                             break;
                         }
-                        
-                        
-                        
-                        
-
-                        //if (listOfProducts[i + 3].Equals("Chip"))
-                        //{
-                        //    Chips chips = new Chips();
-                        //    Console.WriteLine(chips.Sound);
-                        //}
-                        //if (listOfProducts[i + 3].Equals("Candy"))
-                        //{
-                        //    Candy candy = new Candy();
-                        //    Console.WriteLine(candy.Sound);
-                        //}
-                        //if (listOfProducts[i + 3].Equals("Drink"))
-                        //{
-                        //    Beverage beverage = new Beverage();
-                        //    Console.WriteLine(beverage.Sound);
-                        //}
-                        //if (listOfProducts[i + 3].Equals("Gum"))
-                        //{
-                        //    Gum gum = new Gum();
-                        //    Console.WriteLine(gum.Sound);
-                        //}
-
-                        //Console.ReadLine();
-                        //break;
+                        break;
                     }
+
                 }
                 break;
             }
@@ -191,7 +186,7 @@ namespace Capstone
             decimal change = this.Balance - this.PriceOfItem;
 
             //if (change >= 100)
-            if (change > 0.99M)
+            if (change > 0.00M)
             {
                 while (change > 0.24M)
                 {

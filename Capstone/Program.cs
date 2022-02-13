@@ -73,13 +73,13 @@ namespace Capstone
                     Console.WriteLine("    ♦▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬♦");
                     Console.WriteLine();
                     Console.WriteLine(" ♦▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬♦");
-                    Console.WriteLine($"          Current money provided: {moneyRelated.Balance - moneyRelated.NewBalance}");
+                    Console.WriteLine($"          Current money provided: {moneyRelated.Balance - moneyRelated.ProductPrice}");
                     Console.WriteLine(" ♦▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬♦");
                     Console.WriteLine();
                     Console.WriteLine("             ♦▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬♦");
                     Console.WriteLine("             ♦ Please select 1, 2 or 3 ♦");
                     Console.WriteLine("             ♦▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬♦");
-                    moneyRelated.Balance -= moneyRelated.NewBalance;  
+                    moneyRelated.Balance -= moneyRelated.ProductPrice;  
 
                     string subMenuChoice = Console.ReadLine();
                 
