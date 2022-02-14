@@ -73,13 +73,13 @@ namespace Capstone
                     Console.WriteLine("    ♦▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬♦");
                     Console.WriteLine();
                     Console.WriteLine(" ♦▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬♦");
-                    Console.WriteLine($"          Current money provided: {moneyRelated.Balance - moneyRelated.ProductPrice}");
+                    Console.WriteLine($"          Current money provided: {moneyRelated.Balance.ToString("C")}");
                     Console.WriteLine(" ♦▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬♦");
                     Console.WriteLine();
                     Console.WriteLine("             ♦▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬♦");
                     Console.WriteLine("             ♦ Please select 1, 2 or 3 ♦");
                     Console.WriteLine("             ♦▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬♦");
-                    moneyRelated.Balance -= moneyRelated.ProductPrice;  
+                   
 
                     string subMenuChoice = Console.ReadLine();
                 
@@ -91,10 +91,11 @@ namespace Capstone
 
                     if (subMenuChoice == "2")
                        
-                    {    
+                    {
+                       
                         moneyRelated.ProductSelection();
-                      
-                        
+
+                     
                     }
 
                     if (subMenuChoice == "3")

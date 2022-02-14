@@ -12,8 +12,9 @@ namespace Capstone
         public decimal Balance { get; set; }
         public decimal ProductPrice { get; set; }
         public decimal PriceOfItem { get; set; }
+        public decimal RealBalance { get; set; }
 
-        public int Stock { get; set; } = 5;
+        public int Stock { get; set; }
 
         public int AmtPurchased { get; set; }
 
@@ -71,7 +72,8 @@ namespace Capstone
 
                         int stockAvaliabe = this.Stock - this.AmtPurchased;
 
-                        
+
+
 
 
                     }
@@ -83,17 +85,22 @@ namespace Capstone
                 Console.WriteLine("Error reading file.");
 
             }
-            
-            for (int i = 4; i < listOfProducts.Count; i = i + 5)
+
+            bool loopBreak = true;
+
+            for (int j = 4; j < 84; j = j + 5)
             {
-                Console.WriteLine($"{listOfProducts[i - 4]}, {listOfProducts[i - 3]}, {listOfProducts[i - 2]}, {listOfProducts[i - 1]}, {listOfProducts[i]}");
+
+                Console.WriteLine($"{listOfProducts[j - 4]}, {listOfProducts[j - 3]}, {listOfProducts[j - 2]}, {listOfProducts[j - 1]}, {listOfProducts[j]}");
+
             }
+
 
             Console.WriteLine();
             Console.WriteLine();
             Console.WriteLine("Enter Product code:");
 
-            
+
 
             string userInput = Console.ReadLine();
             if (userInput == "12")
@@ -102,7 +109,7 @@ namespace Capstone
                 Console.WriteLine("How did THAT get in there?!");
                 IPausable.LongPause();
             }
-            bool loopBreak = true;
+
 
             while (loopBreak)
             {
@@ -114,60 +121,101 @@ namespace Capstone
                 {
 
 
-                    if (listOfProducts[i].Equals(userInput))
+                    if (listOfProducts[i].Equals(userInput.ToUpper()))
 
                     {
-
-                        Console.WriteLine("your choice is " + listOfProducts[i + 1]);
-
-                        Console.WriteLine("price: " + listOfProducts[i + 2]);
-
-                        
-
-                        while (loopBreak)
+                        if (listOfProducts[i + 4] == "SOLD OUT")
                         {
-                            decimal.TryParse(listOfProducts[i + 2], out decimal productPrice);
+                            ProductPrice = 0;
+                            Console.Clear();
+                            Console.WriteLine("Sold Out! Spend Your Money On Another Delicious Item!");
+                            Console.ReadLine();
+                        }
+                        if (listOfProducts[i + 4] != "SOLD OUT")
+                        {
 
-                            if (Balance < productPrice)
+
+                            Console.WriteLine("your choice is " + listOfProducts[i + 1]);
+
+                            Console.WriteLine("price: " + listOfProducts[i + 2]);
+                            int.TryParse(listOfProducts[i + 4], out int stock);
+
+                            if (stock > 0)
                             {
-                                Console.Clear();
-                                Console.WriteLine("Not enough for selected item");
-                                Console.Read();
-                                ProductPrice = 0;
+                                Stock = stock - 1;
+
+                                if (listOfProducts[i + 4] == "5")
+                                {
+                                    listOfProducts[i + 4] = "4";
+                                }
+                                else if (listOfProducts[i + 4] == "4")
+                                {
+                                    listOfProducts[i + 4] = "3";
+                                }
+                                else if (listOfProducts[i + 4] == "3")
+                                {
+                                    listOfProducts[i + 4] = "2";
+                                }
+                                else if (listOfProducts[i + 4] == "2")
+                                {
+                                    listOfProducts[i + 4] = "1";
+                                }
+                                else if (listOfProducts[i + 4] == "1")
+                                {
+                                    listOfProducts[i + 4] = "SOLD OUT";
+                                }
                             }
 
-                            else
+                            while (loopBreak)
                             {
 
-                                ProductPrice = productPrice;
 
-                                Console.WriteLine("Your remaining balance is:" + (Balance - ProductPrice));
+                                decimal.TryParse(listOfProducts[i + 2], out decimal productPrice);
 
-                                if (listOfProducts[i + 3].Equals("Chip"))
+                                if (Balance < productPrice)
                                 {
-                                    Chips chips = new Chips();
-                                    Console.WriteLine(chips.Sound);
-                                }
-                                if (listOfProducts[i + 3].Equals("Candy"))
-                                {
-                                    Candy candy = new Candy();
-                                    Console.WriteLine(candy.Sound);
-                                }
-                                if (listOfProducts[i + 3].Equals("Drink"))
-                                {
-                                    Beverage beverage = new Beverage();
-                                    Console.WriteLine(beverage.Sound);
-                                }
-                                if (listOfProducts[i + 3].Equals("Gum"))
-                                {
-                                    Gum gum = new Gum();
-                                    Console.WriteLine(gum.Sound);
+                                    Console.Clear();
+                                    Console.WriteLine("Not enough for selected item");
+                                    Console.Read();
+                                    ProductPrice = 0;
                                 }
 
-                                Console.ReadLine();
+                                else
+                                {
+
+                                    ProductPrice = productPrice;
+                                    Balance = Balance - ProductPrice;
+                                    Console.WriteLine($"Your remaining balance is: {Balance.ToString("C")}");
+                                    
+                                    if (listOfProducts[i + 3].Equals("Chip"))
+                                    {
+                                        Chips chips = new Chips();
+                                        Console.WriteLine(chips.Sound);
+                                    }
+                                    if (listOfProducts[i + 3].Equals("Candy"))
+                                    {
+                                        Candy candy = new Candy();
+                                        Console.WriteLine(candy.Sound);
+                                    }
+                                    if (listOfProducts[i + 3].Equals("Drink"))
+                                    {
+                                        Beverage beverage = new Beverage();
+                                        Console.WriteLine(beverage.Sound);
+                                    }
+                                    if (listOfProducts[i + 3].Equals("Gum"))
+                                    {
+                                        Gum gum = new Gum();
+                                        Console.WriteLine(gum.Sound);
+                                    }
+
+                                    
+                                    
+                                   Console.ReadLine();
+                                    break;
+                                }
                                 break;
                             }
-                            break;
+
                         }
                         break;
                     }
@@ -185,7 +233,6 @@ namespace Capstone
             decimal pennies = 0M;
             decimal change = this.Balance - this.PriceOfItem;
 
-            //if (change >= 100)
             if (change > 0.00M)
             {
                 while (change > 0.24M)
@@ -208,7 +255,10 @@ namespace Capstone
                     change -= 0.01M;
                     pennies++;
                 }
+                Balance = 0;
+                Console.Clear();
                 Console.WriteLine("Thank you for shopping with us!");
+                Console.WriteLine($"Remaining Balance: {Balance.ToString("C")}");
                 Console.WriteLine($"Your change is: {quarters} quarters {dimes} dimes {nickels} nickels and {pennies} pennies!");
 
             }
