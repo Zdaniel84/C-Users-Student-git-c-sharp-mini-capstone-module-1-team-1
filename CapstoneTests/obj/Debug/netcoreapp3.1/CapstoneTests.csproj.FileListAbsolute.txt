@@ -94,3 +94,11 @@ C:\Users\Student\git\c-sharp-mini-capstone-module-1-team-1\CapstoneTests\obj\Deb
 C:\Users\Student\git\c-sharp-mini-capstone-module-1-team-1\CapstoneTests\obj\Debug\netcoreapp3.1\CapstoneTests.dll
 C:\Users\Student\git\c-sharp-mini-capstone-module-1-team-1\CapstoneTests\obj\Debug\netcoreapp3.1\CapstoneTests.pdb
 C:\Users\Student\git\c-sharp-mini-capstone-module-1-team-1\CapstoneTests\obj\Debug\netcoreapp3.1\CapstoneTests.genruntimeconfig.cache
+C:\Users\Student\git\c-sharp-mini-capstone-module-1-team-1\CapstoneTests\bin\Debug\netcoreapp3.1\Capstone.deps.json
+C:\Users\Student\git\c-sharp-mini-capstone-module-1-team-1\CapstoneTests\bin\Debug\netcoreapp3.1\Capstone.runtimeconfig.json
+C:\Users\Student\git\c-sharp-mini-capstone-module-1-team-1\CapstoneTests\bin\Debug\netcoreapp3.1\Capstone.runtimeconfig.dev.json
+C:\Users\Student\git\c-sharp-mini-capstone-module-1-team-1\CapstoneTests\bin\Debug\netcoreapp3.1\Capstone.exe
+C:\Users\Student\git\c-sharp-mini-capstone-module-1-team-1\CapstoneTests\bin\Debug\netcoreapp3.1\magichorse.txt
+C:\Users\Student\git\c-sharp-mini-capstone-module-1-team-1\CapstoneTests\bin\Debug\netcoreapp3.1\Welcone.txt
+C:\Users\Student\git\c-sharp-mini-capstone-module-1-team-1\CapstoneTests\bin\Debug\netcoreapp3.1\Capstone.dll
+C:\Users\Student\git\c-sharp-mini-capstone-module-1-team-1\CapstoneTests\bin\Debug\netcoreapp3.1\Capstone.pdb

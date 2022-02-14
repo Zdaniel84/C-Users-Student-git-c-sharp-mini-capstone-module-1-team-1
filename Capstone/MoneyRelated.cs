@@ -59,8 +59,6 @@ namespace Capstone
             }
 
 
-
-
         }
 
         public void ProductSelection()
@@ -306,7 +304,7 @@ namespace Capstone
                 Console.WriteLine($"Your change is: {quarters} quarters {dimes} dimes and {nickels} nickels!");
 
             }
-
+            
         }
     }
 }
