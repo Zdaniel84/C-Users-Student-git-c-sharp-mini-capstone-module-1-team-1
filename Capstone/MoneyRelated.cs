@@ -165,6 +165,23 @@ namespace Capstone
                                     listOfProducts[i + 4] = "SOLD OUT";
                                 }
                             }
+                            DateTime date = DateTime.Now;
+                            string dateString = date.ToString("MM/dd/yyyy hh:mm:ss tt");
+                            string itemName = listOfProducts[i + 1].ToString();
+                            string slot = listOfProducts[i].ToString();
+                            string logline = $"{dateString} {itemName} {slot} {Balance}";
+                            try
+                            {
+                                using (StreamWriter sw = new StreamWriter("Log.txt", true))
+                                {
+                                    sw.WriteLine(logline);
+                                }
+                            }
+                            catch
+                            {
+                                Console.WriteLine("Error when trying to log");
+                                return;
+                            }
 
                             while (loopBreak)
                             {
