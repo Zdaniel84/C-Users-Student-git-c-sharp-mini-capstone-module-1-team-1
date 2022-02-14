@@ -12,7 +12,7 @@ namespace Capstone
         public decimal Balance { get; set; }
         public decimal ProductPrice { get; set; }
         public decimal PriceOfItem { get; set; }
-        public decimal RealBalance { get; set; }
+        
 
         public int Stock { get; set; }
 
@@ -38,16 +38,29 @@ namespace Capstone
                 Console.WriteLine("Please enter a valid amount");
                 Console.ReadLine();
             }
+            decimal.TryParse(amountEntered, out decimal depositAmount);
+            balance = 0;
+            balance += Balance;
+            DateTime date = DateTime.Now;
+            string dateString = date.ToString("MM/dd/yyyy hh:mm:ss tt");
+            string message = "FEED MONEY: ";
+            string logline = $"{dateString} {message} {depositAmount.ToString("C")} {balance.ToString("C")}";
+            try
+            {
+                using (StreamWriter sw = new StreamWriter("Log.txt", true))
+                {
+                    sw.WriteLine(logline);
+                }
+            }
+            catch
+            {
+                Console.WriteLine("Error when trying to log");
+                return;
+            }
 
 
 
 
-
-        }
-
-        public decimal subtractFromBalance(decimal price)
-        {
-            return this.Balance - price;
         }
 
         public void ProductSelection()
@@ -165,11 +178,13 @@ namespace Capstone
                                     listOfProducts[i + 4] = "SOLD OUT";
                                 }
                             }
+                            decimal.TryParse(listOfProducts[i + 2], out decimal itemPrice);
+                            decimal logPrice = Balance - itemPrice;
                             DateTime date = DateTime.Now;
                             string dateString = date.ToString("MM/dd/yyyy hh:mm:ss tt");
                             string itemName = listOfProducts[i + 1].ToString();
                             string slot = listOfProducts[i].ToString();
-                            string logline = $"{dateString} {itemName} {slot} {Balance}";
+                            string logline = $"{dateString} {itemName} {slot} {Balance.ToString("C")} {logPrice.ToString("C")}";
                             try
                             {
                                 using (StreamWriter sw = new StreamWriter("Log.txt", true))
@@ -247,7 +262,6 @@ namespace Capstone
             decimal quarters = 0M;
             decimal dimes = 0M;
             decimal nickels = 0M;
-            decimal pennies = 0M;
             decimal change = this.Balance - this.PriceOfItem;
 
             if (change > 0.00M)
@@ -257,7 +271,7 @@ namespace Capstone
                     change -= 0.25M;
                     quarters++;
                 }
-                while (change > 0.90M)
+                while (change > 0.09M)
                 {
                     change -= 0.10M;
                     dimes++;
@@ -267,16 +281,29 @@ namespace Capstone
                     change -= 0.05M;
                     nickels++;
                 }
-                while (change < 0.04M && change > 0M)
+
+                decimal empty = 0.00M;
+                DateTime date = DateTime.Now;
+                string giveChangeMessage = "GIVE CHANGE:";
+                string dateString = date.ToString("MM/dd/yyyy hh:mm:ss tt");
+                string logline = $"{dateString} {giveChangeMessage} {Balance.ToString("C")} {empty.ToString("C")}";
+                try
                 {
-                    change -= 0.01M;
-                    pennies++;
+                    using (StreamWriter sw = new StreamWriter("Log.txt", true))
+                    {
+                        sw.WriteLine(logline);
+                    }
+                }
+                catch
+                {
+                    Console.WriteLine("Error when trying to log");
+                    return;
                 }
                 Balance = 0;
                 Console.Clear();
                 Console.WriteLine("Thank you for shopping with us!");
                 Console.WriteLine($"Remaining Balance: {Balance.ToString("C")}");
-                Console.WriteLine($"Your change is: {quarters} quarters {dimes} dimes {nickels} nickels and {pennies} pennies!");
+                Console.WriteLine($"Your change is: {quarters} quarters {dimes} dimes and {nickels} nickels!");
 
             }
 
